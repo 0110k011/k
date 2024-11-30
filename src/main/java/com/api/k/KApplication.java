@@ -1,13 +1,13 @@
-package com.api.kapp;
+package com.api.k;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class KappApplication {
+public class KApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(KappApplication.class, args);
+		SpringApplication.run(KApplication.class, args);
 	}
 
 }
