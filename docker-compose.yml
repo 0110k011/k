@@ -1,0 +1,10 @@
+services:
+  springboot-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: springboot-java17-app
+    container_name: springboot-app
+    ports:
+      - "8080:8080"
+    restart: always

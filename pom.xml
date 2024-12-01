@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.api</groupId>
-	<artifactId>k</artifactId>
+	<artifactId>kapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>k</name>
 	<description>k application</description>
