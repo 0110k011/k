@@ -29,6 +29,7 @@
 	<properties>
 		<java.version>17</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -62,6 +63,8 @@
 			<groupId>com.ofxr</groupId>
 			<artifactId>ofx-reader</artifactId>
 			<version>1.0-SNAPSHOT</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/libs/ofx-reader-1.0-SNAPSHOT.jar</systemPath>
 		</dependency>
 	</dependencies>
 

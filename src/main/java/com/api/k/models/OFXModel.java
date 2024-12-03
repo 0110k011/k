@@ -1,3 +1,4 @@
+/*
 package com.api.k.models;
 
 import jakarta.persistence.*;
@@ -19,3 +20,4 @@ public class OFXModel implements Serializable {
     private String account;
 
 }
+*/
