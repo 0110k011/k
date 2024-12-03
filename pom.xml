@@ -60,6 +60,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
 			<groupId>com.ofxr</groupId>
 			<artifactId>ofx-reader</artifactId>
 			<version>1.0-SNAPSHOT</version>
@@ -67,6 +73,10 @@
 	</dependencies>
 
 	<repositories>
+		<repository>
+			<id>central</id>
+			<url>https://repo.maven.apache.org/maven2</url>
+		</repository>
 		<repository>
 			<id>github</id>
 			<url>https://maven.pkg.github.com/0110k011/ofx-reader</url>

@@ -1,64 +1,32 @@
-#services:
-#  springboot-app:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    image: springboot-java17-app
-#    container_name: springboot-app
-#    ports:
-#      - "8080:8080"
-#    restart: always
-#    depends_on:
-#      - postgres-db
-#    environment:
-#      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/k_db
-#      SPRING_DATASOURCE_USERNAME: kadmin
-#      SPRING_DATASOURCE_PASSWORD: 0110k011
-
-#  postgres-db:
-#    image: postgres:15
-#    container_name: postgres-db
-#    ports:
-#      - "5432:5432"
-#    restart: always
-#    volumes:
-#      - postgres-data:/var/lib/postgresql/data
-#    environment:
-#      POSTGRES_DB: k_db
-#      POSTGRES_USER: kadmin
-#      POSTGRES_PASSWORD: 0110k011
-
-#volumes:
-#  postgres-data:
-
 services:
   springboot-app:
     build:
       context: .
       dockerfile: Dockerfile
+    image: springboot-java17-app
+    container_name: springboot-app
     ports:
       - "8080:8080"
-    environment:
-      - SPRING_PROFILES_ACTIVE=prod
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/mydb
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=password
-    networks:
-      - spring-network
+    restart: always
     depends_on:
-      - db
-
-  db:
-    image: postgres:13
+      - postgres-db
     environment:
-      POSTGRES_DB: mydb
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/k_db
+      SPRING_DATASOURCE_USERNAME: kadmin
+      SPRING_DATASOURCE_PASSWORD: 0110k011
+
+  postgres-db:
+    image: postgres:15
+    container_name: postgres-db
     ports:
       - "5432:5432"
-    networks:
-      - spring-network
+    restart: always
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: k_db
+      POSTGRES_USER: kadmin
+      POSTGRES_PASSWORD: 0110k011
 
-networks:
-  spring-network:
-    driver: bridge
+volumes:
+  postgres-data:
