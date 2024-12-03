@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.api</groupId>
-	<artifactId>kapp</artifactId>
+	<artifactId>k</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>k</name>
 	<description>k application</description>
@@ -53,6 +53,13 @@
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>github</id>
+			<url>https://maven.pkg.github.com/0110k011/ofx-reader</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>
