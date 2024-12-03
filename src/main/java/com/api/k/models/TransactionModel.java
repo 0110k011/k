@@ -25,7 +25,7 @@ public class TransactionModel implements Serializable {
     private AccountModel account;
 
     @Column(nullable = false)
-    private String transactionId;
+    private String transactionCod;
 
     @Column(nullable = false)
     private String amount;
