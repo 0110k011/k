@@ -22,8 +22,8 @@ public class AccountModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "account")//, fetch = FetchType.LAZY
     private Set<TransactionModel> transactions = new HashSet<>();
 
     @Column(nullable = false)

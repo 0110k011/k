@@ -1,7 +1,7 @@
 package com.api.k.controllers;
 
+import com.api.k.models.AccountModel;
 import com.api.k.services.FileService;
-import com.ofxr.dtos.AccountStatementDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +17,7 @@ public class FileController {
     private FileService fileService;
 
     @PostMapping(value = "/ofxx", consumes = "multipart/form-data")
-    public AccountStatementDto uploadOFX(@RequestParam("file") MultipartFile file) throws Exception {
+    public AccountModel uploadOFX(@RequestParam("file") MultipartFile file) throws Exception {
         return fileService.uploadOFX(file);
     }
 
