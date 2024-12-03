@@ -1,5 +1,6 @@
 package com.api.k.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -24,6 +25,7 @@ public class AccountModel implements Serializable {
 
     //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "account")//, fetch = FetchType.LAZY
+    @JsonManagedReference
     private Set<TransactionModel> transactions = new HashSet<>();
 
     @Column(nullable = false)
