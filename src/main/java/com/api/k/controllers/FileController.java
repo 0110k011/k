@@ -16,7 +16,7 @@ public class FileController {
     @Autowired
     private FileService fileService;
 
-    @PostMapping(value = "/ofx", consumes = "multipart/form-data")
+    @PostMapping(value = "/ofxx", consumes = "multipart/form-data")
     public AccountStatementDto uploadOFX(@RequestParam("file") MultipartFile file) throws Exception {
         return fileService.uploadOFX(file);
     }
