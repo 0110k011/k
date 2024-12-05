@@ -35,13 +35,13 @@ public class AccountModel implements Serializable {
     private String currency;
 
     @Column(nullable = false)
-    private String bankCod;
+    private String bankCode;
 
     @Column(nullable = false)
-    private String branchCod;
+    private String branchCode;
 
     @Column(nullable = false, unique = true)
-    private String accountCod;
+    private String accountCode;
 
     @Column(nullable = false)
     private String accountType;

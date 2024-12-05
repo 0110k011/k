@@ -1,9 +1,9 @@
 package com.api.k.services;
 
 import com.api.k.models.AccountModel;
-import com.api.k.models.TransactionModel;
 import com.ofxr.OFXProcess;
 import com.ofxr.dtos.AccountStatementDto;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,32 +24,18 @@ public class FileService {
         this.transactionService = transactionService;
     }
 
+    @Transactional
     public AccountModel uploadOFX(MultipartFile file) throws Exception {
 
         try {
             InputStream inputStream = file.getInputStream();
             AccountStatementDto accountStatement = ofxProcess.processOFX(inputStream);
 
-            AccountModel account = new AccountModel();
-            account.setOrganization(accountStatement.getOrganization());
-            account.setCurrency(accountStatement.getCurrency());
-            account.setBankCod(accountStatement.getBankId());
-            account.setBranchCod(accountStatement.getBranchId());
-            account.setAccountCod(accountStatement.getAccountId());
-            account.setAccountType(accountStatement.getAccountType());
+            AccountModel account = accountService.createAccount(accountStatement);
 
-            AccountModel savedAccount = accountService.createAccount(account);
+            transactionService.createTransaction(accountStatement.getTransactions(), account);
 
-            accountStatement.getTransactions().forEach(tx -> {
-                TransactionModel transaction = new TransactionModel();
-                transaction.setAccount(savedAccount);
-                transaction.setTransactionCod(tx.getTransactionId());
-                transaction.setAmount(tx.getAmount());
-                transaction.setDate(tx.getDate());
-                transactionService.createTransaction(transaction);
-            });
-
-            return savedAccount;
+            return account;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

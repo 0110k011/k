@@ -9,5 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface AccountRepository extends JpaRepository<AccountModel, UUID> {
-    Optional<AccountModel> findByAccountCod(String accountCod);
+    Optional<AccountModel> findByAccountCode(String accountCode);
 }

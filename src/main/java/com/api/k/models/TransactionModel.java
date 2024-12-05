@@ -1,12 +1,17 @@
 package com.api.k.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -27,13 +32,27 @@ public class TransactionModel implements Serializable {
     @JsonBackReference
     private AccountModel account;
 
-    @Column(nullable = false)
-    private String transactionCod;
+    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "transaction")//, fetch = FetchType.LAZY
+    @JsonManagedReference
+    private Set<TransactionDescriptionModel> transactionDescriptions = new HashSet<>();
+
+    @Column(nullable = false, unique = true)
+    private String transactionCode;
+
+    @Column(nullable = false, precision = 19, scale = 2)
+    private BigDecimal amount;
 
     @Column(nullable = false)
-    private String amount;
+    private LocalDateTime date;
 
     @Column(nullable = false)
-    private String date;
+    private String transactionType;
+
+    @Column(nullable = false)
+    private String description;
+
+    @Column(nullable = true)
+    private String nfCode;
 
 }
