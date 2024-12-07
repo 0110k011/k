@@ -43,6 +43,9 @@ public class TransactionModel implements Serializable {
     @Column(nullable = false, precision = 19, scale = 2)
     private BigDecimal amount;
 
+    @Column(nullable = true, precision = 19, scale = 2)
+    private BigDecimal amountApproximateTaxes;
+
     @Column(nullable = false)
     private LocalDateTime date;
 
@@ -51,6 +54,21 @@ public class TransactionModel implements Serializable {
 
     @Column(nullable = false)
     private String description;
+
+    @Column(nullable = true)
+    private String corporateReason;
+
+    @Column(nullable = true)
+    private String name;
+
+    @Column(nullable = true)
+    private String cnpj;
+
+    @Column(nullable = true)
+    private String paymentType;
+
+    @Column(nullable = true)
+    private String paymentMethod;
 
     @Column(nullable = true)
     private String nfCode;
