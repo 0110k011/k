@@ -9,6 +9,7 @@ public class AppConfig {
 
     @Bean
     public OFXProcess ofxProcess() {
+
         return new OFXProcess();
     }
 }
