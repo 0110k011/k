@@ -1,6 +1,6 @@
 package com.api.k.dtos;
 
-import jakarta.persistence.Column;
+import com.k.webscraper.enums.PaymentTypeEnum;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -19,14 +19,13 @@ public class TransactionDto {
     private String corporateReason;
     private String name;
     private String cnpj;
-    private String paymentType;
-    private String paymentMethod;
+    private PaymentTypeEnum paymentType;
     private String nfCode;
 
     public TransactionDto() {
     }
 
-    public TransactionDto(Set<TransactionDescriptionDto> transactionDescriptions, String transactionCode, BigDecimal amount, BigDecimal amountApproximateTaxes, LocalDateTime date, String transactionType, String description, String corporateReason, String name, String cnpj, String paymentType, String paymentMethod, String nfCode) {
+    public TransactionDto(Set<TransactionDescriptionDto> transactionDescriptions, String transactionCode, BigDecimal amount, BigDecimal amountApproximateTaxes, LocalDateTime date, String transactionType, String description, String corporateReason, String name, String cnpj, PaymentTypeEnum paymentType, String nfCode) {
         this.transactionDescriptions = transactionDescriptions;
         this.transactionCode = transactionCode;
         this.amount = amount;
@@ -38,7 +37,6 @@ public class TransactionDto {
         this.name = name;
         this.cnpj = cnpj;
         this.paymentType = paymentType;
-        this.paymentMethod = paymentMethod;
         this.nfCode = nfCode;
     }
 
@@ -122,20 +120,12 @@ public class TransactionDto {
         this.cnpj = cnpj;
     }
 
-    public String getPaymentType() {
+    public PaymentTypeEnum getPaymentType() {
         return paymentType;
     }
 
-    public void setPaymentType(String paymentType) {
+    public void setPaymentType(PaymentTypeEnum paymentType) {
         this.paymentType = paymentType;
-    }
-
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
     }
 
     public String getNfCode() {
@@ -160,7 +150,6 @@ public class TransactionDto {
                 ", name='" + name + '\'' +
                 ", cnpj='" + cnpj + '\'' +
                 ", paymentType='" + paymentType + '\'' +
-                ", paymentMethod='" + paymentMethod + '\'' +
                 ", nfCode='" + nfCode + '\'' +
                 '}';
     }

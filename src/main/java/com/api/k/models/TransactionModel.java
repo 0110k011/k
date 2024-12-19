@@ -33,7 +33,7 @@ public class TransactionModel implements Serializable {
     private AccountModel account;
 
     //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "transaction")//, fetch = FetchType.LAZY
+    @OneToMany(mappedBy = "transaction", cascade = CascadeType.ALL)//, fetch = FetchType.LAZY
     @JsonManagedReference
     private Set<TransactionDescriptionModel> transactionDescriptions = new HashSet<>();
 
@@ -67,10 +67,7 @@ public class TransactionModel implements Serializable {
     @Column(nullable = true)
     private String paymentType;
 
-    @Column(nullable = true)
-    private String paymentMethod;
-
-    @Column(nullable = true)
+    @Column(nullable = true, unique = true)
     private String nfCode;
 
 }

@@ -70,6 +70,12 @@
 			<artifactId>ofx-reader</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.k.webscraper</groupId>
+			<artifactId>webscraper</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<repositories>
@@ -78,8 +84,12 @@
 			<url>https://repo.maven.apache.org/maven2</url>
 		</repository>
 		<repository>
-			<id>github</id>
+			<id>github-ofx-reader</id>
 			<url>https://maven.pkg.github.com/0110k011/ofx-reader</url>
+		</repository>
+		<repository>
+			<id>github-webscraper</id>
+			<url>https://maven.pkg.github.com/0110k011/webscraper</url>
 		</repository>
 	</repositories>
 

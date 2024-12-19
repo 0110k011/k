@@ -2,8 +2,6 @@ package com.api.k.controllers;
 
 import com.api.k.models.AccountModel;
 import com.api.k.services.FileService;
-import com.api.k.utils.HtmlParser;
-import com.api.k.utils.WebScraper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -31,14 +29,7 @@ public class FileController {
 
     @GetMapping(value = "/test")
     public String test(@RequestParam("code") String code) throws Exception {
-        WebScraper webScraper = new WebScraper();
-        //52241224447350000240652560001119131034289792
-        String htmlString0 = webScraper.getWebData(String.format("%s/nfe/identificacao-tipo-consulta?chaveAcesso=%s&g-recaptcha-response=%s", nfeUrl, code, gRecaptchaResponse));
-        String htmlString2 = webScraper.getWebData(String.format("%s/nfce/render/xml-consulta-completa?chaveAcesso=%s&g-recaptcha-response=%s", nfeUrl, code, gRecaptchaResponse));
-        String htmlString3 = webScraper.getWebData(String.format("%s/nfce/render/NFCe?chNFe=%s", nfeUrl, code));
-        return htmlString3;
-/*        HtmlParser htmlParser = new HtmlParser();
-        return htmlParser.nfParse(htmlString);*/
+        return "teste";
     }
 }
 
