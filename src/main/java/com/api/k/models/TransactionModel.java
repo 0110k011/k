@@ -3,6 +3,7 @@ package com.api.k.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.k.webscraper.enums.PaymentTypeEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -65,7 +66,7 @@ public class TransactionModel implements Serializable {
     private String cnpj;
 
     @Column(nullable = true)
-    private String paymentType;
+    private PaymentTypeEnum paymentType;
 
     @Column(nullable = true, unique = true)
     private String nfCode;

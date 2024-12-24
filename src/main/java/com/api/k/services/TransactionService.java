@@ -1,6 +1,5 @@
 package com.api.k.services;
 
-import com.api.k.dtos.TransactionDescriptionDto;
 import com.api.k.dtos.TransactionDto;
 import com.api.k.models.AccountModel;
 import com.api.k.models.TransactionDescriptionModel;
@@ -65,6 +64,11 @@ public class TransactionService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
 
+        Optional<TransactionModel> existingTransactionCode = transactionRepository.findByNfCode(transactionDto.getNfCode());
+        if (existingTransactionCode.isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(existingTransactionCode.get());
+        }
+
         WebScraperParser webScraperParser = new WebScraperParser();
         NFParsedDto nfParsedDto = webScraperParser.getNFData(transactionDto.getNfCode(), gRecaptchaResponse);
 
@@ -72,7 +76,7 @@ public class TransactionService {
                 .map(ProductServiceDataDto::getAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        if (!transactionDto.getAmount().equals(totalAmount)) {
+        if (!transactionDto.getAmount().abs().equals(totalAmount.abs())) {
             return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
         }
 
