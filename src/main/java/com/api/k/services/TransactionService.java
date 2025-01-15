@@ -1,6 +1,8 @@
 package com.api.k.services;
 
 import com.api.k.dtos.TransactionDto;
+import com.api.k.exceptions.DivergentValuesException;
+import com.api.k.exceptions.TransactionNotFoundException;
 import com.api.k.models.AccountModel;
 import com.api.k.models.TransactionDescriptionModel;
 import com.api.k.models.TransactionModel;
@@ -61,7 +63,7 @@ public class TransactionService {
 
         Optional<TransactionModel> transactionOpt = this.getTransactionById(id);
         if (transactionOpt.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            throw new TransactionNotFoundException(id);
         }
 
         Optional<TransactionModel> existingTransactionCode = transactionRepository.findByNfCode(transactionDto.getNfCode());
@@ -77,7 +79,7 @@ public class TransactionService {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         if (!transactionDto.getAmount().abs().equals(totalAmount.abs())) {
-            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
+            throw new DivergentValuesException();
         }
 
         transactionDto.setAmountApproximateTaxes(nfParsedDto.getApproximateTaxAmount());
